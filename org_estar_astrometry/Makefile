@@ -10,7 +10,7 @@ JAR_FILE	=org_$(ESTAR_NAME)_$(ASTROMETRY_NAME).jar
 JAVACFLAGS 	= -d $(LIBDIR) -sourcepath ../../../ -classpath $(LIBDIR):$(CLASSPATH)
 DOCSDIR 	= /home/dev/public_html/robonet/javadocs/$(PACKAGEDIR)
 
-SRCS = RA.java Dec.java CelestialObject.java
+SRCS = RA.java Dec.java CelestialObject.java CelestialObjectRMagnitudeComparator.java
 OBJS = $(SRCS:%.java=$(LIBDIR)/$(PACKAGEDIR)/%.class)
 DOCS = $(SRCS:%.java=$(DOCSDIR)/$(PACKAGEDIR)/%.html)
 
