@@ -8,11 +8,11 @@ import java.util.*;
 /**
  * This class holds some data for a celestial object.
  * @author Chris Mottram
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class CelestialObject
 {
-	public final static String RCSID = "$Id: CelestialObject.java,v 1.1 2002-12-29 22:00:57 cjm Exp $";
+	public final static String RCSID = "$Id: CelestialObject.java,v 1.2 2003-02-27 19:57:53 cjm Exp $";
 	protected String name = null;
 	protected int number = 0;
 	protected RA ra = null;
@@ -135,6 +135,12 @@ public class CelestialObject
 		return comment;
 	}
 
+	/**
+	 * Routine to parse the RA and Dec returned from Simbad.
+	 * Note this does not currently cope with the case where the 
+	 * Dec is expressed as "[+|-]DD MM.mm" i.e. no seconds. This gives a number format exception.
+	 * @param s The string to parse.
+	 */
 	public void parseSimbadRADec(String s)
 	{
 		StringTokenizer st = null;
@@ -159,8 +165,26 @@ public class CelestialObject
 				ra.setHours(intValue);
 				break;
 			case TOKEN_INDEX_RAM:
-				intValue = Integer.parseInt(valueString);
-				ra.setMinutes(intValue);
+				// if a decimal ra minutes, then next token is dec degrees
+				if(valueString.indexOf(".") > -1)
+				{
+					// minutes are from start of string up to '.'
+					intValue = Integer.parseInt(valueString.substring(0,valueString.indexOf(".")));
+					ra.setMinutes(intValue);
+					// decimal minutes are from '.' to end of string
+					doubleValue = Double.parseDouble(valueString.
+									 substring(valueString.indexOf("."),
+										   valueString.length()));
+					doubleValue *= 60.0;// decimal minutes to seconds
+					ra.setSeconds(doubleValue);
+					// next token is degrees, inc index to compensate.
+					i++;
+				}
+				else
+				{
+					intValue = Integer.parseInt(valueString);
+					ra.setMinutes(intValue);
+				}
 				break;
 			case TOKEN_INDEX_RAS:
 				doubleValue = Double.parseDouble(valueString);
@@ -174,8 +198,26 @@ public class CelestialObject
 				dec.setDegrees(intValue);
 				break;
 			case TOKEN_INDEX_DECM:
-				intValue = Integer.parseInt(valueString);
-				dec.setMinutes(intValue);
+				// if a decimal dec minutes, then next token is dec degrees
+				if(valueString.indexOf(".") > -1)
+				{
+					// minutes are from start of string up to '.'
+					intValue = Integer.parseInt(valueString.substring(0,valueString.indexOf(".")));
+					dec.setMinutes(intValue);
+					// decimal minutes are from '.' to end of string
+					doubleValue = Double.parseDouble(valueString.
+									 substring(valueString.indexOf("."),
+										   valueString.length()));
+					doubleValue *= 60.0;// decimal minutes to seconds
+					dec.setSeconds(doubleValue);
+					// This should be last token, inc index to DECS is not called.
+					i++;
+				}
+				else
+				{
+					intValue = Integer.parseInt(valueString);
+					dec.setMinutes(intValue);
+				}
 				break;
 			case TOKEN_INDEX_DECS:
 				doubleValue = Double.parseDouble(valueString);
@@ -192,4 +234,7 @@ public class CelestialObject
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.1  2002/12/29 22:00:57  cjm
+// Initial revision
+//
 //
