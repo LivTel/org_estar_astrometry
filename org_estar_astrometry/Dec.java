@@ -8,14 +8,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class Dec
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.1 2002-12-29 22:00:57 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.2 2003-01-08 19:59:23 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
@@ -111,7 +111,8 @@ public class Dec
 	 * @param signChar The character, containing either '+' or '-', that determines
 	 *        whether the declination is positive or negative.
 	 * @exception IllegalArgumentException Thrown if the sign character is not a legal value.
-	 */	public void setNegative(char signChar) throws IllegalArgumentException
+	 */
+	public void setNegative(char signChar) throws IllegalArgumentException
 	{
 		if(signChar == SIGN_CHAR_POSITIVE)
 			negative = false;
@@ -285,4 +286,7 @@ public class Dec
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.1  2002/12/29 22:00:57  cjm
+// Initial revision
+//
 //
