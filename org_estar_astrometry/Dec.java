@@ -8,14 +8,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class Dec
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.6 2003-03-04 13:20:28 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.7 2005-01-18 15:49:41 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
@@ -406,6 +406,16 @@ public class Dec
 	}
 
 	/**
+	 * Routine to get Dec as radians.
+	 * @return The number of radians.
+	 * @see #toArcSeconds
+	 */
+	public double toRadians()
+	{
+		return (toArcSeconds()*(Math.PI/2.0))/(90.0*60.0*60.0);
+	}
+
+	/**
 	 * Print out the declination, in the form:
 	 * <pre>&lt;+|-&gt;DD:MM:SS.ss</pre>
 	 * @see #DEFAULT_SEPERATOR
@@ -444,6 +454,10 @@ public class Dec
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.6  2003/03/04 13:20:28  cjm
+// Relaxed checking of seconds, to allow seconds of 60.0 exactley, as
+// ESO ECF USNOA2 server returns these (presumably a rounding error).
+//
 // Revision 1.5  2003/02/24 13:14:12  cjm
 // Commenting and error checks.
 // Added fromRadians method.

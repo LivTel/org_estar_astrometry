@@ -9,14 +9,14 @@ import java.util.*;
  * This class hold the coordinates for Right Ascension. The right ascension is represented internally
  * with hours, minutes and seconds fields.
  * @author Chris Mottram
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class RA
 {
 	/**
 	 * Revision Control System ID.
 	 */
-	public final static String RCSID = "$Id: RA.java,v 1.4 2003-03-04 13:20:21 cjm Exp $";
+	public final static String RCSID = "$Id: RA.java,v 1.5 2005-01-18 15:44:49 cjm Exp $";
 	/**
 	 * Default character to separate hours, minutes and seconds. This is a colon ':'.
 	 */
@@ -291,6 +291,17 @@ public class RA
 	}
 
 	/**
+	 * Routine to convert RA to radians. Done by conversion into arc-seconds, and then converting to radians. 
+	 * @return The number of radians.
+	 * @see #ARCSECONDS_PER_DAY
+	 * @see #toArcSeconds
+	 */
+	public double toRadians() throws IllegalArgumentException
+	{
+		return (toArcSeconds()*(2*Math.PI))/ARCSECONDS_PER_DAY;
+	}
+
+	/**
 	 * Method to print out a right ascension as a string.
 	 * e.g.: <pre>HH:MM:SS.ss</pre>
 	 * @see #toString(char)
@@ -354,6 +365,10 @@ public class RA
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.4  2003/03/04 13:20:21  cjm
+// Relaxed checking of seconds, to allow seconds of 60.0 exactley, as
+// ESO ECF USNOA2 server returns these (presumably a rounding error).
+//
 // Revision 1.3  2003/02/24 13:14:12  cjm
 // Commenting and error checks.
 //
