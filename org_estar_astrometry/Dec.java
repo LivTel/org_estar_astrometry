@@ -8,14 +8,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class Dec
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.3 2003-01-17 18:56:11 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.4 2003-01-27 19:32:01 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
@@ -288,6 +288,30 @@ public class Dec
 	}
 
 	/**
+	 * Routine to set Dec from a number of arc-seconds.
+	 * @param as The number of arc-seconds.
+	 */
+	public void fromArcSeconds(double as)
+	{
+		int d,m;
+		boolean negative;
+
+		if(as < 0.0)
+		{
+			negative = true;
+			as = Math.abs(as);
+		}
+		else
+			negative = false;
+		setNegative(negative);
+		d = ((int)as) / (60*60);
+		setDegrees(d);
+		m = (((int)as) - (d*3600))/60;
+		setMinutes(m);
+		setSeconds((as-((d*3600.0)+(m*60.0))));
+	}
+
+	/**
 	 * Print out the declination, in the form:
 	 * <pre>&lt;+|-&gt;DD:MM:SS.ss</pre>
 	 * @see #DEFAULT_SEPERATOR
@@ -326,6 +350,11 @@ public class Dec
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.3  2003/01/17 18:56:11  cjm
+// Added extra parameter to parseSeparator, that allows +ve Decs with no '+' character.
+// This is to parse ESO Tycho website, that returns Decs in this form.
+// Default is still to fail if Dec not prepended with [+|-].
+//
 // Revision 1.2  2003/01/08 19:59:23  cjm
 // *** empty log message ***
 //

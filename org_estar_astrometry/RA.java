@@ -8,16 +8,17 @@ import java.util.*;
 /**
  * This class hold the coordinates for Right Ascension.
  * @author Chris Mottram
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class RA
 {
-	public final static String RCSID = "$Id: RA.java,v 1.1 2002-12-29 22:00:57 cjm Exp $";
+	public final static String RCSID = "$Id: RA.java,v 1.2 2003-01-27 19:32:01 cjm Exp $";
 	public final static char DEFAULT_SEPERATOR = ':';
+	public final static double SECONDS_TO_ARCSECONDS = 15.0;
+	public final static double ARCSECONDS_PER_DAY = (24.0*60.0*60.0*15.0);
 	private final static int TOKEN_INDEX_H = 0;
 	private final static int TOKEN_INDEX_M = 1;
 	private final static int TOKEN_INDEX_S = 2;
-	private final static double SECONDS_TO_ARCSECONDS = 15.0;
 	public int hours;
 	public int minutes;
 	public double seconds;
@@ -94,6 +95,22 @@ public class RA
 		return d;
 	}
 
+	/**
+	 * Routine to set RA from a number of arc-seconds.
+	 * @param as The number of arc-seconds.
+	 * @see #SECONDS_TO_ARCSECONDS
+	 */
+	public void fromArcSeconds(double as)
+	{
+		int h,m;
+
+		h = ((int)as) / (60*60*15);
+		setHours(h);
+		m = (((int)as) - (h*3600*15))/(60*15);
+		setMinutes(m);
+		setSeconds((as-((h*3600.0*15.0)+(m*60.0*15.0))));
+	}
+
 	public String toString()
 	{
 		return toString(DEFAULT_SEPERATOR);
@@ -137,4 +154,7 @@ public class RA
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.1  2002/12/29 22:00:57  cjm
+// Initial revision
+//
 //
