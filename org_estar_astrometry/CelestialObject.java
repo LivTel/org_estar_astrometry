@@ -8,11 +8,11 @@ import java.util.*;
 /**
  * This class holds some data for a celestial object.
  * @author Chris Mottram
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class CelestialObject
 {
-	public final static String RCSID = "$Id: CelestialObject.java,v 1.2 2003-02-27 19:57:53 cjm Exp $";
+	public final static String RCSID = "$Id: CelestialObject.java,v 1.3 2003-02-27 20:09:10 cjm Exp $";
 	protected String name = null;
 	protected int number = 0;
 	protected RA ra = null;
@@ -137,9 +137,17 @@ public class CelestialObject
 
 	/**
 	 * Routine to parse the RA and Dec returned from Simbad.
-	 * Note this does not currently cope with the case where the 
-	 * Dec is expressed as "[+|-]DD MM.mm" i.e. no seconds. This gives a number format exception.
+	 * This copes with strings of the form: "01 10 12.98  +60 04 35.9"
+	 * but also "05 28 43     +35 51.3" where decimal minutes are returned and no seconds.
 	 * @param s The string to parse.
+	 * @see #ra
+	 * @see #dec
+	 * @see #TOKEN_INDEX_RAH
+	 * @see #TOKEN_INDEX_RAM
+	 * @see #TOKEN_INDEX_RAS
+	 * @see #TOKEN_INDEX_DECD
+	 * @see #TOKEN_INDEX_DECM
+	 * @see #TOKEN_INDEX_DECS
 	 */
 	public void parseSimbadRADec(String s)
 	{
@@ -234,6 +242,10 @@ public class CelestialObject
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.2  2003/02/27 19:57:53  cjm
+// Fixed parseSimbadRADec for the case where 6 tokens do not exist. i.e. for "m38" simbad returns string:
+// " 05 28 43     +35 51.3" i.e. with decimal dec minutes. Will also cope with decimal ra minutes.
+//
 // Revision 1.1  2002/12/29 22:00:57  cjm
 // Initial revision
 //
