@@ -8,19 +8,25 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class Dec
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.4 2003-01-27 19:32:01 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.5 2003-02-24 13:14:12 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
 	public final static char DEFAULT_SEPERATOR = ':';
+	/**
+	 * Sign character used to indicate positive declinations, a plus '+'.
+	 */
 	public final static char SIGN_CHAR_POSITIVE = '+';
+	/**
+	 * Sign character used to indicate negative declinations, a plus '-'.
+	 */
 	public final static char SIGN_CHAR_NEGATIVE = '-';
 	/**
 	 * Parsing index for degrees.
@@ -79,19 +85,35 @@ public class Dec
 	}
 	
 	/**
-	 * Sets the degress part of a declination.
+	 * Sets the degress part of a declination. This must be positive, (0..90) inclusive. Use setNegative
+	 * to set a negative number of degrees (to get round the minus zero degrees bug).
+	 * @param degrees An integer representing a number of degrees.
+	 * @exception IllegalArgumentException Thrown if the argument is out of range.
+	 * @see #setNegative
 	 * @see #degrees
 	 */
 	public void setDegrees(int d) throws IllegalArgumentException
 	{
 		if(d < 0)
-			throw new IllegalArgumentException("Illegal number of degrees:"+d+": Must be positive");
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":setDegrees:Illegal number of degrees:"+d+
+							   ": Must be positive.");
+		}
+		if(d > 90)
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":setDegrees:Illegal number of degrees:"+d+
+							   ": Must be less than or equal to 90.");
+		}
 		degrees = d;
 	}
 
 	/**
-	 * Returns the number of degrees. This is always positive, use getSign to find out
+	 * Returns the number of degrees. This is always positive, use getNegative to find out
 	 * whether the declination is negative.
+	 * @return The number of degrees, between (0..90) inclusive.
+	 * @see #getNegative
 	 */
 	public int getDegrees()
 	{
@@ -100,6 +122,7 @@ public class Dec
 
 	/**
 	 * Routine to set whether declination is negative.
+	 * @param b If true, the declination is negative, otherwise it is positive.
 	 */
 	public void setNegative(boolean b)
 	{
@@ -121,7 +144,11 @@ public class Dec
 		else if(signChar == SIGN_CHAR_NEGATIVE)
 			negative = true;
 		else
-			throw new IllegalArgumentException("Illegal sign character:"+signChar+": Must be [+/-].");
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":setNegative:Illegal sign character:"+signChar+
+							   ": Must be [+/-].");
+		}
 	}
 
 	/**
@@ -135,18 +162,29 @@ public class Dec
 
 	/**
 	 * Method to set the minutes of declination.
-	 * @param m The number of minutes. This should be positive/zero.
-	 * @exception IllegalArgumentException Thrown if the minutes are negative.
+	 * @param m The number of minutes. This should be in the range (0..59) inclusive.
+	 * @exception IllegalArgumentException Thrown if the minutes are out of range.
 	 */
 	public void setMinutes(int m) throws IllegalArgumentException
 	{
 		if(m < 0)
-			throw new IllegalArgumentException("Illegal number of minutes:"+m+": Must be positive");
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":setMinutes:Illegal number of minutes:"+m+
+							   ": Must be positive.");
+		}
+		if(m > 59)
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":setMinutes:Illegal number of minutes:"+m+
+							   ": Must be less than 60.");
+		}
 		minutes = m;
 	}
 
 	/**
 	 * Method to return the number of minutes.
+	 * @return The number of minutes.
 	 */
 	public int getMinutes()
 	{
@@ -155,16 +193,30 @@ public class Dec
 	
 	/**
 	 * Method to set the seconds of declination.
-	 * @param s The number of seconds. This should be positive/zero.
-	 * @exception IllegalArgumentException Thrown if the input value is negative.
+	 * @param s The number of seconds. This should be graeter or equal to zero and less than 60.
+	 * @exception IllegalArgumentException Thrown if the input value is out of range.
 	 */
 	public void setSeconds(double s) throws IllegalArgumentException
 	{
 		if(s < 0.0)
-			throw new IllegalArgumentException("Illegal number of seconds:"+s+": Must be positive");
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":setSecondsIllegal number of seconds:"+s+
+							   ": Must be positive.");
+		}
+		if(s >= 60.0)
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":setSecondsIllegal number of seconds:"+s+
+							   ": Must be less than 60.");
+		}
 		seconds = s;
 	}
 
+	/**
+	 * Return the number of seconds.
+	 * @return The number of seconds.
+	 */
 	public double getSeconds()
 	{
 		return seconds;
@@ -296,6 +348,20 @@ public class Dec
 		int d,m;
 		boolean negative;
 
+		// range check
+		if(as < (-90.0*60.0*60.0))
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":fromArcSeconds:+Illegal number of arc-seconds:"+as+
+							   ": Must be greater than "+(-90.0*60.0*60.0)+".");
+		}
+		if(as > (90.0*60.0*60.0))
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":fromArcSeconds:+Illegal number of arc-seconds:"+as+
+							   ": Must be less than "+(90.0*60.0*60.0)+".");
+		}
+		// sort out negative
 		if(as < 0.0)
 		{
 			negative = true;
@@ -309,6 +375,32 @@ public class Dec
 		m = (((int)as) - (d*3600))/60;
 		setMinutes(m);
 		setSeconds((as-((d*3600.0)+(m*60.0))));
+	}
+
+	/**
+	 * Routine to set Dec from a number of radians.
+	 * @param radians The number of radians.
+	 * @see #fromArcSeconds
+	 */
+	public void fromRadians(double radians)
+	{
+		double as;
+
+		// range check
+		if(radians < (-Math.PI/2.0))
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":fromRadians:+Illegal number of radians:"+radians+
+							   ": Must be greater than "+(-Math.PI/2.0)+".");
+		}
+		if(radians > (Math.PI/2.0))
+		{
+			throw new IllegalArgumentException(this.getClass().getName()+
+							   ":fromRadians:+Illegal number of radians:"+radians+
+							   ": Must be less than "+(Math.PI/2.0)+".");
+		}
+		as = (90.0*60.0*60.0 * radians)/(Math.PI/2.0); 
+		fromArcSeconds(as);
 	}
 
 	/**
@@ -350,6 +442,9 @@ public class Dec
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.4  2003/01/27 19:32:01  cjm
+// Added fromArcSeconds.
+//
 // Revision 1.3  2003/01/17 18:56:11  cjm
 // Added extra parameter to parseSeparator, that allows +ve Decs with no '+' character.
 // This is to parse ESO Tycho website, that returns Decs in this form.
