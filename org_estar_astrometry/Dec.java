@@ -8,14 +8,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class Dec
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.5 2003-02-24 13:14:12 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.6 2003-03-04 13:20:28 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
@@ -194,6 +194,8 @@ public class Dec
 	/**
 	 * Method to set the seconds of declination.
 	 * @param s The number of seconds. This should be graeter or equal to zero and less than 60.
+	 *          However, we allow seconds of 60.0 as they can occur due to rounding errors.
+	 *          e.g. The ESO/ECF server returns them!
 	 * @exception IllegalArgumentException Thrown if the input value is out of range.
 	 */
 	public void setSeconds(double s) throws IllegalArgumentException
@@ -204,7 +206,7 @@ public class Dec
 							   ":setSecondsIllegal number of seconds:"+s+
 							   ": Must be positive.");
 		}
-		if(s >= 60.0)
+		if(s > 60.0)
 		{
 			throw new IllegalArgumentException(this.getClass().getName()+
 							   ":setSecondsIllegal number of seconds:"+s+
@@ -442,6 +444,10 @@ public class Dec
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.5  2003/02/24 13:14:12  cjm
+// Commenting and error checks.
+// Added fromRadians method.
+//
 // Revision 1.4  2003/01/27 19:32:01  cjm
 // Added fromArcSeconds.
 //
