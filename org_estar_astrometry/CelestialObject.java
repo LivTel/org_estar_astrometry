@@ -8,21 +8,21 @@ import java.util.*;
 /**
  * This class holds some data for a celestial object.
  * @author Chris Mottram
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class CelestialObject
 {
-	public final static String RCSID = "$Id: CelestialObject.java,v 1.3 2003-02-27 20:09:10 cjm Exp $";
-	protected String name = null;
-	protected int number = 0;
-	protected RA ra = null;
-	protected Dec dec = null;
-	protected String type = null;
-	protected String spectralType = null;
-	protected double bMagnitude = 0.0;
-	protected double vMagnitude = 0.0;
-	protected double rMagnitude = 0.0;
-	protected String comment = null;
+	public final static String RCSID = "$Id: CelestialObject.java,v 1.4 2003-07-23 18:07:06 cjm Exp $";
+	public String name = null;
+	public int number = 0;
+	public RA ra = null;
+	public Dec dec = null;
+	public String type = null;
+	public String spectralType = null;
+	public double bMagnitude = 0.0;
+	public double vMagnitude = 0.0;
+	public double rMagnitude = 0.0;
+        public String comment = null;
 	private final static int TOKEN_INDEX_RAH = 0;
 	private final static int TOKEN_INDEX_RAM = 1;
 	private final static int TOKEN_INDEX_RAS = 2;
@@ -242,6 +242,9 @@ public class CelestialObject
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.3  2003/02/27 20:09:10  cjm
+// Fixed parseSimbadRADec comment.
+//
 // Revision 1.2  2003/02/27 19:57:53  cjm
 // Fixed parseSimbadRADec for the case where 6 tokens do not exist. i.e. for "m38" simbad returns string:
 // " 05 28 43     +35 51.3" i.e. with decimal dec minutes. Will also cope with decimal ra minutes.
