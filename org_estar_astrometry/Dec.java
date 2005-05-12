@@ -8,14 +8,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class Dec
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.7 2005-01-18 15:49:41 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.8 2005-05-12 10:04:45 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
@@ -245,6 +245,19 @@ public class Dec
 	}
 	
 	/**
+	 * Parse a colon-seperated (:) Declination, and set this objects fields accordingly.
+	 * @param s The colon separated declination string.
+	 * @param checkSignChar If true, the first character of the string <b>must be</b> a [+|-] sign.
+	 *        Otherwise it doesn't have to be, if the first character of the string <b>is not</b> a [+|-] sign,
+	 *        '+' is assumed.
+	 * @see #parseSeparator
+	 */
+	public void parseColon(String s,boolean checkSignChar) throws IllegalArgumentException
+	{
+		parseSeparator(s,":",checkSignChar);
+	}
+	
+	/**
 	 * Parse a space-seperated ( ) Declination, and set this objects fields accordingly.
 	 * This method asssumes the declination starts with a [+|-] sign.
 	 * @see #parseSeparator
@@ -454,6 +467,9 @@ public class Dec
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.7  2005/01/18 15:49:41  cjm
+// Added toRadians.
+//
 // Revision 1.6  2003/03/04 13:20:28  cjm
 // Relaxed checking of seconds, to allow seconds of 60.0 exactley, as
 // ESO ECF USNOA2 server returns these (presumably a rounding error).
