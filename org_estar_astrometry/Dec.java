@@ -1,6 +1,7 @@
 // Dec.java
 package org.estar.astrometry;
 
+import java.io.*;
 import java.lang.*;
 import java.text.*;
 import java.util.*;
@@ -8,14 +9,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
-public class Dec
+public class Dec implements Serializable
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.8 2005-05-12 10:04:45 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.9 2005-05-12 11:31:21 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
@@ -467,6 +468,9 @@ public class Dec
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.8  2005/05/12 10:04:45  cjm
+// Added parseColon with checkSignChar argument.
+//
 // Revision 1.7  2005/01/18 15:49:41  cjm
 // Added toRadians.
 //

@@ -1,6 +1,7 @@
 // CelestialObject.java
 package org.estar.astrometry;
 
+import java.io.*;
 import java.lang.*;
 import java.text.*;
 import java.util.*;
@@ -8,11 +9,11 @@ import java.util.*;
 /**
  * This class holds some data for a celestial object.
  * @author Chris Mottram
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
-public class CelestialObject
+public class CelestialObject implements Serializable
 {
-	public final static String RCSID = "$Id: CelestialObject.java,v 1.4 2003-07-23 18:07:06 cjm Exp $";
+	public final static String RCSID = "$Id: CelestialObject.java,v 1.5 2005-05-12 11:31:29 cjm Exp $";
 	public String name = null;
 	public int number = 0;
 	public RA ra = null;
@@ -242,6 +243,9 @@ public class CelestialObject
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.4  2003/07/23 18:07:06  cjm
+// Tried making fields public so web-services over applet don't fail
+//
 // Revision 1.3  2003/02/27 20:09:10  cjm
 // Fixed parseSimbadRADec comment.
 //

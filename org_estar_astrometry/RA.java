@@ -1,6 +1,7 @@
 // RA.java
 package org.estar.astrometry;
 
+import java.io.*;
 import java.lang.*;
 import java.text.*;
 import java.util.*;
@@ -9,14 +10,14 @@ import java.util.*;
  * This class hold the coordinates for Right Ascension. The right ascension is represented internally
  * with hours, minutes and seconds fields.
  * @author Chris Mottram
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
-public class RA
+public class RA implements Serializable
 {
 	/**
 	 * Revision Control System ID.
 	 */
-	public final static String RCSID = "$Id: RA.java,v 1.5 2005-01-18 15:44:49 cjm Exp $";
+	public final static String RCSID = "$Id: RA.java,v 1.6 2005-05-12 11:31:28 cjm Exp $";
 	/**
 	 * Default character to separate hours, minutes and seconds. This is a colon ':'.
 	 */
@@ -365,6 +366,9 @@ public class RA
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.5  2005/01/18 15:44:49  cjm
+// Added toRadians.
+//
 // Revision 1.4  2003/03/04 13:20:21  cjm
 // Relaxed checking of seconds, to allow seconds of 60.0 exactley, as
 // ESO ECF USNOA2 server returns these (presumably a rounding error).
