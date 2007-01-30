@@ -1,3 +1,22 @@
+/*   
+    Copyright 2006, Astrophysics Research Institute, Liverpool John Moores University.
+
+    This file is part of org.estar.astrometry.
+
+    org.estar.astrometry is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    org.estar.astrometry is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with org.estar.astrometry; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 // Dec.java
 package org.estar.astrometry;
 
@@ -9,14 +28,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class Dec implements Serializable
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.9 2005-05-12 11:31:21 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.10 2007-01-30 18:30:36 cjm Exp $";
 	/**
 	 * Default separator.
 	 */
@@ -468,6 +487,9 @@ public class Dec implements Serializable
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.9  2005/05/12 11:31:21  cjm
+// Made serializable for deep-cloning purposes.
+//
 // Revision 1.8  2005/05/12 10:04:45  cjm
 // Added parseColon with checkSignChar argument.
 //

@@ -1,3 +1,22 @@
+/*   
+    Copyright 2006, Astrophysics Research Institute, Liverpool John Moores University.
+
+    This file is part of org.estar.astrometry.
+
+    org.estar.astrometry is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    org.estar.astrometry is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with org.estar.astrometry; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 // CelestialObject.java
 package org.estar.astrometry;
 
@@ -9,11 +28,11 @@ import java.util.*;
 /**
  * This class holds some data for a celestial object.
  * @author Chris Mottram
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class CelestialObject implements Serializable
 {
-	public final static String RCSID = "$Id: CelestialObject.java,v 1.5 2005-05-12 11:31:29 cjm Exp $";
+	public final static String RCSID = "$Id: CelestialObject.java,v 1.6 2007-01-30 18:30:32 cjm Exp $";
 	public String name = null;
 	public int number = 0;
 	public RA ra = null;
@@ -243,6 +262,9 @@ public class CelestialObject implements Serializable
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.5  2005/05/12 11:31:29  cjm
+// Made serializable for deep-cloning purposes.
+//
 // Revision 1.4  2003/07/23 18:07:06  cjm
 // Tried making fields public so web-services over applet don't fail
 //

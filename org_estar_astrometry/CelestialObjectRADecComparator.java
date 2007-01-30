@@ -1,3 +1,22 @@
+/*   
+    Copyright 2006, Astrophysics Research Institute, Liverpool John Moores University.
+
+    This file is part of org.estar.astrometry.
+
+    org.estar.astrometry is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    org.estar.astrometry is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with org.estar.astrometry; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
 // CelestialObjectRADecComparator.java
 package org.estar.astrometry;
 
@@ -12,14 +31,14 @@ import java.util.*;
  * for declinations. This allows us to search for RA/Decs in a list that are close to the required value,
  * (within  a square error box of radius errorRadius).
  * @author Chris Mottram
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class CelestialObjectRADecComparator implements Comparator,Serializable
 {
 	/**
 	 * Revision control system Identifier.
 	 */
-	public final static String RCSID = "$Id: CelestialObjectRADecComparator.java,v 1.1 2003-01-27 19:32:01 cjm Exp $";
+	public final static String RCSID = "$Id: CelestialObjectRADecComparator.java,v 1.2 2007-01-30 18:30:33 cjm Exp $";
 	/**
 	 * The error value, in arc-seconds, used to determine when RA/Decs are close enough to be the same.
 	 */
@@ -89,6 +108,9 @@ public class CelestialObjectRADecComparator implements Comparator,Serializable
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.1  2003/01/27 19:32:01  cjm
+// Initial revision
+//
 // Revision 1.1  2003/01/08 19:59:23  cjm
 // Initial revision
 //
