@@ -28,14 +28,19 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class Dec implements Serializable
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.10 2007-01-30 18:30:36 cjm Exp $";
+	public final static String RCSID = "$Id: Dec.java,v 1.11 2008-08-28 13:01:49 cjm Exp $";
+	/**
+	 * Serial version ID. Fixed as instances of this class can be used as parameters (inside
+	 * org.estar.rtml.RTMLDocument's) in RMI calls across JVMs.
+	 */
+	static final long serialVersionUID = 153075416033448598L;
 	/**
 	 * Default separator.
 	 */
@@ -487,6 +492,9 @@ public class Dec implements Serializable
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.10  2007/01/30 18:30:36  cjm
+// gnuify: Added GNU General Public License.
+//
 // Revision 1.9  2005/05/12 11:31:21  cjm
 // Made serializable for deep-cloning purposes.
 //

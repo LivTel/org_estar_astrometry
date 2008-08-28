@@ -29,14 +29,19 @@ import java.util.*;
  * This class hold the coordinates for Right Ascension. The right ascension is represented internally
  * with hours, minutes and seconds fields.
  * @author Chris Mottram
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class RA implements Serializable
 {
 	/**
 	 * Revision Control System ID.
 	 */
-	public final static String RCSID = "$Id: RA.java,v 1.7 2007-01-30 18:30:36 cjm Exp $";
+	public final static String RCSID = "$Id: RA.java,v 1.8 2008-08-28 13:01:54 cjm Exp $";
+	/**
+	 * Serial version ID. Fixed as instances of this class can be used as parameters (inside
+	 * org.estar.rtml.RTMLDocument's) in RMI calls across JVMs.
+	 */
+	static final long serialVersionUID = 685728745827694925L;
 	/**
 	 * Default character to separate hours, minutes and seconds. This is a colon ':'.
 	 */
@@ -385,6 +390,9 @@ public class RA implements Serializable
 };
 //
 // $Log: not supported by cvs2svn $
+// Revision 1.7  2007/01/30 18:30:36  cjm
+// gnuify: Added GNU General Public License.
+//
 // Revision 1.6  2005/05/12 11:31:28  cjm
 // Made serializable for deep-cloning purposes.
 //
