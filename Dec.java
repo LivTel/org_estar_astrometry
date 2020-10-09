@@ -28,14 +28,14 @@ import java.util.*;
 /**
  * This class hold the coordinates for Declination.
  * @author Chris Mottram
- * @version $Revision: 1.11 $
+ * @version $Revision$
  */
 public class Dec implements Serializable
 {
 	/**
 	 * Revision control system Id.
 	 */
-	public final static String RCSID = "$Id: Dec.java,v 1.11 2008-08-28 13:01:49 cjm Exp $";
+	public final static String RCSID = "$Id$";
 	/**
 	 * Serial version ID. Fixed as instances of this class can be used as parameters (inside
 	 * org.estar.rtml.RTMLDocument's) in RMI calls across JVMs.

@@ -28,11 +28,11 @@ import java.util.*;
 /**
  * This class holds some data for a celestial object.
  * @author Chris Mottram
- * @version $Revision: 1.6 $
+ * @version $Revision$
  */
 public class CelestialObject implements Serializable
 {
-	public final static String RCSID = "$Id: CelestialObject.java,v 1.6 2007-01-30 18:30:32 cjm Exp $";
+	public final static String RCSID = "$Id$";
 	public String name = null;
 	public int number = 0;
 	public RA ra = null;

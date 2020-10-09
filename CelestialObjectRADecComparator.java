@@ -31,14 +31,14 @@ import java.util.*;
  * for declinations. This allows us to search for RA/Decs in a list that are close to the required value,
  * (within  a square error box of radius errorRadius).
  * @author Chris Mottram
- * @version $Revision: 1.2 $
+ * @version $Revision$
  */
 public class CelestialObjectRADecComparator implements Comparator,Serializable
 {
 	/**
 	 * Revision control system Identifier.
 	 */
-	public final static String RCSID = "$Id: CelestialObjectRADecComparator.java,v 1.2 2007-01-30 18:30:33 cjm Exp $";
+	public final static String RCSID = "$Id$";
 	/**
 	 * The error value, in arc-seconds, used to determine when RA/Decs are close enough to be the same.
 	 */

@@ -26,14 +26,14 @@ import java.util.*;
 /**
  * This class holds some data for a celestial object.
  * @author Chris Mottram
- * @version $Revision: 1.2 $
+ * @version $Revision$
  */
 public class CelestialObjectVMagnitudeComparator implements Comparator
 {
 	/**
 	 * Revision control system Identifier.
 	 */
-	public final static String RCSID = "$Id: CelestialObjectVMagnitudeComparator.java,v 1.2 2007-01-30 18:30:35 cjm Exp $";
+	public final static String RCSID = "$Id$";
 
 	/**
 	 * Default constructor.
